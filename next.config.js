@@ -3,14 +3,21 @@ const createNextIntlPlugin = require('next-intl/plugin');
 
 const withNextIntl = createNextIntlPlugin();
 
+const repository = process.env.GITHUB_REPOSITORY || '';
+const repositoryName = repository.split('/')[1] || '';
+const isProjectPages =
+  Boolean(process.env.GITHUB_ACTIONS) &&
+  Boolean(repositoryName) &&
+  !repositoryName.endsWith('.github.io');
+const basePath = isProjectPages ? `/${repositoryName}`.toLowerCase() : '';
+
 const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
   },
-  // Uncomment and set basePath if using GitHub project pages (e.g., username.github.io/repo-name)
-  // basePath: '/repo-name',
-  // assetPrefix: '/repo-name/',
+  basePath,
+  assetPrefix: basePath || undefined,
   trailingSlash: true,
 };
 

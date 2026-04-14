@@ -111,3 +111,5 @@ npx serve out
 - `next.config.js` - Static export configuration
 - `i18n.ts` - Locale configuration
 - `middleware.ts` - Locale detection and routing
+
+在本项目的开发过程中，请始终通过 Context7 检索相关的最新文档和 API 用法，无需我额外声明。
